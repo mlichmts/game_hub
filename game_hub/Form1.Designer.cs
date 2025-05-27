@@ -68,7 +68,7 @@
             // 
             // password_input
             // 
-            this.password_input.BackColor = System.Drawing.Color.Linen;
+            this.password_input.BackColor = System.Drawing.Color.Sienna;
             this.password_input.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.password_input.Location = new System.Drawing.Point(183, 218);
             this.password_input.Name = "password_input";
