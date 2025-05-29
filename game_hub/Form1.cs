@@ -8,32 +8,53 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Data.SqlClient;
+using System.Data.Sql;
 
 namespace game_hub
 {
     public partial class Form1 : Form
     {
-
+        SqlConnection cn;
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        SqlDataReader dr; 
         public Form1()
         {
+            
             InitializeComponent();
             
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = username_input.Text;
-            string password = password_input.Text;
+            string username = username_input.Text.Trim();
+            string password = password_input.Text.Trim();
 
-            if (username == "admin" && password == "admin")
+            if (username == "" || password == "")
             {
-                MessageBox.Show("loged in as " + username);
+                MessageBox.Show("Please fill in both fields.");
+                return;
+            }
+
+            string query = "SELECT * FROM data_hub WHERE username = @username AND password = @password";
+            cmd = new SqlCommand(query, cn);
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+
+            dr = cmd.ExecuteReader();
+
+            if (dr.HasRows)
+            {
+                dr.Close();
+                MessageBox.Show("Logged in as " + username);
                 new MainMenu().Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("nieje v databaze");
+                dr.Close();
+                MessageBox.Show("Invalid username or password.");
             }
 
         }
@@ -42,24 +63,58 @@ namespace game_hub
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mlich\source\repos\game_hub\game_hub\data_hub.mdf;Integrated Security=True");
+            cn.Open();
+            Getnames();
         }
 
         private void register_button_Click(object sender, EventArgs e)
         {
-            string username = username_input.Text;
-            string password = password_input.Text;
+            string username = username_input.Text.Trim();
+            string password = password_input.Text.Trim();
 
-            if (username != string.Empty && password != string.Empty)
+            if (username == "" || password == "")
             {
-                MessageBox.Show("Registered in as "+ username);
-                new MainMenu().Show();
-                this.Hide();
+                MessageBox.Show("Please fill in both fields.");
+                return;
             }
-            else
+
+            // Check if user already exists
+            string checkQuery = "SELECT * FROM data_hub WHERE username = @username";
+            cmd = new SqlCommand(checkQuery, cn);
+            cmd.Parameters.AddWithValue("@username", username);
+
+            dr = cmd.ExecuteReader();
+            if (dr.HasRows)
             {
-                MessageBox.Show("nieje v databaze");
+                dr.Close();
+                MessageBox.Show("Username already exists.");
+                return;
             }
+            dr.Close();
+
+            // Register user
+            string insertQuery = "INSERT INTO data_hub (username, password, game1, game2, game3, game4, total) VALUES (@username, @password, 0, 0, 0, 0, 0)";
+            cmd = new SqlCommand(insertQuery, cn);
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+
+            cmd.ExecuteNonQuery();
+
+            MessageBox.Show("Registered successfully as " + username);
+            new MainMenu().Show();
+            this.Hide();
+            Getnames();
+        }
+
+        private void Getnames()
+        {
+            cmd = new SqlCommand("Select * from data_hub", cn);
+            da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            
         }
 
        
