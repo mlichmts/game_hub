@@ -21,6 +21,7 @@ namespace game_hub
         {
             new Form1().Show();
             this.Close();
+            MessageBox.Show(Session.LoggedUsername);
         }
     }
 }

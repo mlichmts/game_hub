@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using static System.Collections.Specialized.BitVector32;
 
 namespace game_hub
 {
@@ -47,6 +48,7 @@ namespace game_hub
             if (dr.HasRows)
             {
                 dr.Close();
+                Session.LoggedUsername = username;
                 MessageBox.Show("Logged in as " + username);
                 new MainMenu().Show();
                 this.Hide();
