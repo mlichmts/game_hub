@@ -23,5 +23,11 @@ namespace game_hub
             this.Close();
             MessageBox.Show(Session.LoggedUsername);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new Jet1().Show();
+            this.Close();
+        }
     }
 }
