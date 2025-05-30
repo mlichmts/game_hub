@@ -2,28 +2,36 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace game_hub
 {
     public partial class Jet1 : Form
     {
+        SqlConnection cn;
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        SqlDataReader dr;
 
         bool goLeft, goRight, shooting, isGameOver;
         int score;
         int playerSpeed = 12;
         int enemySpeed;
         int bulletSpeed;
+        int oldscore;
         Random rnd = new Random();
 
 
         public Jet1()
         {
             InitializeComponent();
+            
             resetGame();
         }
 
@@ -119,10 +127,9 @@ namespace game_hub
             }
         }
 
-        private void enemyTwo_Click(object sender, EventArgs e)
-        {
+       
 
-        }
+      
 
         private void keyisup(object sender, KeyEventArgs e)
         {
@@ -146,14 +153,47 @@ namespace game_hub
             {
                 resetGame();
             }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Hide();
+                new MainMenu().Show();
+            }
         }
 
         private void resetGame()
         {
+            cn = new SqlConnection(Session.Connect_String);
+            cn.Open();
+            string query2 = "SELECT game1 FROM data_hub WHERE username = @username";
+            cmd = new SqlCommand(query2, cn);
+            cmd.Parameters.AddWithValue("@username", Session.LoggedUsername);
+
+            object result = cmd.ExecuteScalar(); // z cmd query2 dostane udaje do result
+            ;
+
+            
+                oldscore = Convert.ToInt32(result);
+
+            score_result.Text += Environment.NewLine + "Staré skore" + oldscore + Environment.NewLine + "Nové skore" + score;
+
+
+            // Step 2: Compare and update if needed
+            if (score > oldscore)
+            {
+                string query = "UPDATE data_hub SET game1 = @score WHERE username = @username";
+                SqlCommand updateCmd = new SqlCommand(query, cn);
+                updateCmd.Parameters.AddWithValue("@score", score);
+                updateCmd.Parameters.AddWithValue("@username", Session.LoggedUsername);
+                updateCmd.ExecuteNonQuery();
+            }
+
+            cn.Close();
+
             gameTimer.Start();
             enemySpeed = 6;
 
-
+            
             enemyOne.Left = rnd.Next(20, 600);
             enemyTwo.Left = rnd.Next(20, 600);
             enemyThree.Left = rnd.Next(20, 600);
@@ -170,6 +210,10 @@ namespace game_hub
 
             txtScore.Text = score.ToString();
 
+
+            
+            
+            
         }
 
         private void gameOver()
@@ -177,6 +221,8 @@ namespace game_hub
             isGameOver = true;
             gameTimer.Stop();
             txtScore.Text += Environment.NewLine + "Game Over!!" + Environment.NewLine + "Press Enter to try again.";
+            score_result.Text = "";
+
 
         }
     }

@@ -36,6 +36,7 @@
             this.enemyThree = new System.Windows.Forms.PictureBox();
             this.enemyTwo = new System.Windows.Forms.PictureBox();
             this.enemyOne = new System.Windows.Forms.PictureBox();
+            this.score_result = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bullet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemyThree)).BeginInit();
@@ -98,7 +99,7 @@
             this.enemyTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.enemyTwo.TabIndex = 0;
             this.enemyTwo.TabStop = false;
-            this.enemyTwo.Click += new System.EventHandler(this.enemyTwo_Click);
+            
             // 
             // enemyOne
             // 
@@ -110,15 +111,23 @@
             this.enemyOne.TabIndex = 0;
             this.enemyOne.TabStop = false;
             // 
+            // score_result
+            // 
+            this.score_result.Location = new System.Drawing.Point(550, 17);
+            this.score_result.Name = "score_result";
+            this.score_result.Size = new System.Drawing.Size(238, 80);
+            this.score_result.TabIndex = 2;
+            // 
             // Jet1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(800, 674);
+            this.Controls.Add(this.enemyThree);
+            this.Controls.Add(this.score_result);
             this.Controls.Add(this.player);
             this.Controls.Add(this.bullet);
-            this.Controls.Add(this.enemyThree);
             this.Controls.Add(this.enemyTwo);
             this.Controls.Add(this.enemyOne);
             this.Controls.Add(this.txtScore);
@@ -145,6 +154,7 @@
         private System.Windows.Forms.PictureBox player;
         private System.Windows.Forms.Label txtScore;
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Label score_result;
     }
 }
 

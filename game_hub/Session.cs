@@ -9,5 +9,6 @@ namespace game_hub
     internal class Session
     {
         public static string LoggedUsername { get; set; }
+        public static string Connect_String { get; set; }
     }
 }

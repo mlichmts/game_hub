@@ -65,7 +65,10 @@ namespace game_hub
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mlich\source\repos\game_hub\game_hub\data_hub.mdf;Integrated Security=True");
+            Session.Connect_String = (@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mlich\source\repos\game_hub\game_hub\data_hub.mdf;Integrated Security=True");
+            
+            cn = new SqlConnection(Session.Connect_String);
+            
             cn.Open();
             Getnames();
         }
@@ -74,7 +77,7 @@ namespace game_hub
         {
             string username = username_input.Text.Trim();
             string password = password_input.Text.Trim();
-
+            Session.LoggedUsername = username;
             if (username == "" || password == "")
             {
                 MessageBox.Show("Please fill in both fields.");
