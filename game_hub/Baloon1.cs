@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,22 @@ namespace game_hub
 {
     public partial class Baloon1 : Form
     {
+        SqlConnection cn;
+        SqlCommand cmd;
+        SqlDataAdapter da;
+        SqlDataReader dr;
 
         int speed;
         int score;
         Random rand = new Random();
         bool gameOver;
+        int oldscore;
 
 
         public Baloon1()
         {
             InitializeComponent();
+            
             RestartGame();
         }
 
@@ -32,6 +39,7 @@ namespace game_hub
 
             if (gameOver == true)
             {
+                score_result.Text = "";
                 gameTimer.Stop();
                 txtScore.Text = "Score: " + score + " Game over, press enter to restart!";
             }
@@ -123,21 +131,58 @@ namespace game_hub
             {
                 RestartGame();
             }
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Hide();
+                new MainMenu().Show();
+            }
         }
 
         private void RestartGame()
         {
+            cn = new SqlConnection(Session.Connect_String);
+            cn.Open();
+
+            string query2 = "SELECT game2 FROM data_hub WHERE username = @username";
+            cmd = new SqlCommand(query2, cn);
+            cmd.Parameters.AddWithValue("@username", Session.LoggedUsername);
+
+            object result = cmd.ExecuteScalar();
+
+            if (result != DBNull.Value && result != null)
+            {
+                oldscore = Convert.ToInt32(result);
+            }
+            else
+            {
+                oldscore = 0; // default if there's no previous score
+            }
+
+            score_result.Text += Environment.NewLine + "Staré skore: " + oldscore + Environment.NewLine + "Nové skore: " + score;
+
+            // Update the database only if new score is higher
+            if (score > oldscore)
+            {
+                string query = "UPDATE data_hub SET game2 = @score WHERE username = @username";
+                SqlCommand updateCmd = new SqlCommand(query, cn);
+                updateCmd.Parameters.AddWithValue("@score", score);
+                updateCmd.Parameters.AddWithValue("@username", Session.LoggedUsername);
+                updateCmd.ExecuteNonQuery();
+            }
+
+            cn.Close();
+
             speed = 5;
             score = 0;
             gameOver = false;
 
             bomb.Image = Properties.Resources.bomb;
 
-            foreach(Control x in this.Controls)
+            foreach (Control x in this.Controls)
             {
                 if (x is PictureBox)
                 {
-                    x.Top = rand.Next(750,  1000);
+                    x.Top = rand.Next(750, 1000);
                     x.Left = rand.Next(5, 500);
                 }
             }
