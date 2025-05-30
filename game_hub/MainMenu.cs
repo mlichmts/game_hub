@@ -29,5 +29,11 @@ namespace game_hub
             new Jet1().Show();
             this.Close();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            new Baloon1().Show();
+            this.Close();
+        }
     }
 }

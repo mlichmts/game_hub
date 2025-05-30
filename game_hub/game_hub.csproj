@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Baloon1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baloon1.Designer.cs">
+      <DependentUpon>Baloon1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Session.cs" />
+    <EmbeddedResource Include="Baloon1.resx">
+      <DependentUpon>Baloon1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +143,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>data_hub.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\boom.gif" />
+    <None Include="Resources\bomb.gif" />
+    <None Include="Resources\yellowBalloon.gif" />
+    <None Include="Resources\redStar.gif" />
+    <None Include="Resources\pinkBalloon.gif" />
+    <None Include="Resources\redHeart.gif" />
     <None Include="Resurces\player.png" />
     <None Include="Resurces\bullet.png" />
     <None Include="Resurces\enemy.png" />
