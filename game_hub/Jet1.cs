@@ -127,9 +127,10 @@ namespace game_hub
             }
         }
 
-       
+        private void txtScore_Click(object sender, EventArgs e)
+        {
 
-      
+        }
 
         private void keyisup(object sender, KeyEventArgs e)
         {
@@ -170,10 +171,16 @@ namespace game_hub
             cmd.Parameters.AddWithValue("@username", Session.LoggedUsername);
 
             object result = cmd.ExecuteScalar(); // z cmd query2 dostane udaje do result
-            ;
 
-            
+
+            if (result != DBNull.Value && result != null)
+            {
                 oldscore = Convert.ToInt32(result);
+            }
+            else
+            {
+                oldscore = 0; // default if there's no previous score
+            }
 
             score_result.Text += Environment.NewLine + "Staré skore" + oldscore + Environment.NewLine + "Nové skore" + score;
 

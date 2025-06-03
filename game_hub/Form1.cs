@@ -65,7 +65,7 @@ namespace game_hub
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Session.Connect_String = (@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mlich\source\repos\game_hub\game_hub\data_hub.mdf;Integrated Security=True");
+            Session.Connect_String = (@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Anony\source\repos\Poisonous89\vs1\game_hub\game_hub\data_hub(1).mdf;Integrated Security=True");
             
             cn = new SqlConnection(Session.Connect_String);
             

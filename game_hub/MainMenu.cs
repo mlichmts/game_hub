@@ -41,5 +41,16 @@ namespace game_hub
             new Leaderboard().Show();
             this.Close();
         }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new Game3().Show();
+            this.Close();
+        }
     }
 }

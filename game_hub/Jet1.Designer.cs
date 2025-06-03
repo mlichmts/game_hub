@@ -53,6 +53,7 @@
             this.txtScore.TabIndex = 1;
             this.txtScore.Text = "0";
             this.txtScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtScore.Click += new System.EventHandler(this.txtScore_Click);
             // 
             // gameTimer
             // 
@@ -99,7 +100,6 @@
             this.enemyTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.enemyTwo.TabIndex = 0;
             this.enemyTwo.TabStop = false;
-            
             // 
             // enemyOne
             // 

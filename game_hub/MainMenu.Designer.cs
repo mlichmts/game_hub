@@ -57,6 +57,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "game1";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -136,6 +137,7 @@
             this.Controls.Add(this.button1);
             this.Name = "MainMenu";
             this.Text = "Main Menu";
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
