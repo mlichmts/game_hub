@@ -31,7 +31,7 @@ namespace game_hub
             
             RestartGame();
         }
-
+        
         private void MainTimerEvent(object sender, EventArgs e)
         {
 

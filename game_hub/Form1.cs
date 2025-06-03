@@ -71,6 +71,7 @@ namespace game_hub
             
             cn.Open();
             Getnames();
+            update();
         }
 
         private void register_button_Click(object sender, EventArgs e)
@@ -114,11 +115,21 @@ namespace game_hub
 
         private void Getnames()
         {
+            
             cmd = new SqlCommand("Select * from data_hub", cn);
             da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView1.DataSource = dt;
+            
+        }
+
+        private void update()
+        {
+            
+            cmd = new SqlCommand(@"UPDATE data_hub SET total = ISNULL(game1, 0) + ISNULL(game2, 0) + ISNULL(game3, 0) + ISNULL(game4, 0)", cn);
+            
+            cmd.ExecuteNonQuery();
             
         }
 

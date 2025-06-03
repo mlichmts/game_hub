@@ -17,22 +17,28 @@ namespace game_hub
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // back to log in button
         {
             new Form1().Show();
             this.Close();
             MessageBox.Show(Session.LoggedUsername);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // jet game button
         {
             new Jet1().Show();
             this.Close();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e) // baloon game button
         {
             new Baloon1().Show();
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e) //leaderboard button
+        {
+            new Leaderboard().Show();
             this.Close();
         }
     }

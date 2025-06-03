@@ -79,6 +79,12 @@
     <Compile Include="Jet1.Designer.cs">
       <DependentUpon>Jet1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Leaderboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Leaderboard.Designer.cs">
+      <DependentUpon>Leaderboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Jet1.resx">
       <DependentUpon>Jet1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Leaderboard.resx">
+      <DependentUpon>Leaderboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
@@ -143,6 +152,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>data_hub.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\baloongame.png" />
+    <None Include="Resources\jetgame.png" />
     <None Include="Resources\boom.gif" />
     <None Include="Resources\bomb.gif" />
     <None Include="Resources\yellowBalloon.gif" />

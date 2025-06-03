@@ -31,12 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.txtScore = new System.Windows.Forms.Label();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.score_result = new System.Windows.Forms.Label();
             this.bomb = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.score_result = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bomb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -58,6 +58,14 @@
             // 
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.MainTimerEvent);
+            // 
+            // score_result
+            // 
+            this.score_result.Location = new System.Drawing.Point(473, 21);
+            this.score_result.Name = "score_result";
+            this.score_result.Size = new System.Drawing.Size(158, 52);
+            this.score_result.TabIndex = 2;
+            this.score_result.Text = " ";
             // 
             // bomb
             // 
@@ -118,19 +126,11 @@
             this.pictureBox1.Tag = "balloon";
             this.pictureBox1.Click += new System.EventHandler(this.PopBalloon);
             // 
-            // score_result
-            // 
-            this.score_result.Location = new System.Drawing.Point(473, 21);
-            this.score_result.Name = "score_result";
-            this.score_result.Size = new System.Drawing.Size(158, 52);
-            this.score_result.TabIndex = 2;
-            this.score_result.Text = " ";
-            // 
             // Baloon1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(634, 661);
             this.Controls.Add(this.score_result);
             this.Controls.Add(this.txtScore);
