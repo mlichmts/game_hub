@@ -128,5 +128,10 @@ namespace game_hub
             this.Close();
             new MainMenu().Show();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

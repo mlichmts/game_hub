@@ -103,6 +103,12 @@
     <Compile Include="Game3.Designer.cs">
       <DependentUpon>Game3.cs</DependentUpon>
     </Compile>
+    <Compile Include="xox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="xox.Designer.cs">
+      <DependentUpon>xox.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Baloon1.resx">
       <DependentUpon>Baloon1.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +136,9 @@
     </Compile>
     <EmbeddedResource Include="Game3.resx">
       <DependentUpon>Game3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xox.resx">
+      <DependentUpon>xox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -160,6 +169,8 @@
     <Content Include="data_hub.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\bg.png" />
+    <None Include="Resources\screenshot.png" />
     <None Include="Resources\baloongame.png" />
     <None Include="Resources\jetgame.png" />
     <None Include="Resources\boom.gif" />

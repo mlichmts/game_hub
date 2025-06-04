@@ -52,5 +52,11 @@ namespace game_hub
             new Game3().Show();
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new xox().Show();
+            this.Close();
+        }
     }
 }
